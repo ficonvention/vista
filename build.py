@@ -7,6 +7,9 @@ EMAIL = "ficonvention@gmail.com"
 SITE = dict(
     name="Vista", domain="www.vistapub.co.kr",
     brand_main="VISTA", brand_sub="세빛섬 3F · Cafe & Restaurant",
+    brand_html='<a class="brand vista-mark" href="index.html"><span class="brand-main">VISTA</span></a>',
+    header_cls=" header-vista",
+    fonts="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Fredericka+the+Great&family=Big+Shoulders+Stencil+Display:wght@700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap",
     desc="비스타 — 반포 한강 세빛섬 플로팅아일랜드 3층 캐주얼 펍 다이닝. 전면 통창 파노라믹 한강 야경, 이탈리안 푸드와 세계 맥주, 기업연회·가족연회·돌잔치·프로포즈. 11:00–23:00, 예약 02-537-2405.",
     og="2649b2_76dd4914a0474381bdbbcf7d4c7fd72f~mv2_d_5923_3949_s_4_2.jpg",
     address="서울 서초구 반포동 650 세빛섬 플로팅아일랜드 3층 비스타",
@@ -25,12 +28,62 @@ SITE = dict(
 )
 
 THEME = """:root{
-  --ink:#1b1714; --ink-soft:#6a625b; --line:#e8e2da; --paper:#fffdfa; --cream:#f6f1ea;
-  --gold:#d4a24c; --gold-deep:#a67a2a; --sky:#daeef3;
-  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Noto Sans KR","Apple SD Gothic Neo",sans-serif;
-  --wrap:1180px; --header-h:76px;
+  --ink:#eaeaea; --ink-soft:#bdbdbd; --line:#2a2a2a; --paper:#000000; --cream:#111111;
+  --gold:#ed0e37; --gold-deep:#f65374; --sky:#daeef3;
+  --serif:"Fredericka the Great",Georgia,serif; --sans:"Open Sans","Noto Sans KR","Apple SD Gothic Neo",sans-serif;
+  --wrap:980px; --header-h:300px;
 }
-.site-footer{background:#14110f}.cta-band{background:#1b1714}
+body{background:#000;color:var(--ink);font-weight:400}
+h1,h2,h3{color:#fff}
+.site-header.header-vista{position:static;height:auto;background:#000;border:0;backdrop-filter:none;padding-top:10px}
+.site-header.header-vista .wrap{flex-direction:column;height:auto;gap:0}
+.vista-mark{display:block;text-align:center;margin:0 auto .5rem}
+.vista-mark .brand-main{font-family:"Big Shoulders Stencil Display","Impact",sans-serif;font-weight:900;font-size:clamp(5rem,16vw,153px);line-height:1;letter-spacing:.02em;color:#eaeaea;text-shadow:3px 3px 0 #7a1b2b}
+.header-vista .site-nav ul{justify-content:center;gap:0}
+.header-vista .site-nav li{border-left:1px solid #555;padding:0 .9rem}
+.header-vista .site-nav li:first-child{border-left:0}
+.header-vista .site-nav a{font-size:15px;letter-spacing:0;text-transform:none;color:#eaeaea;padding:1.2rem 0}
+.header-vista .site-nav li.active > a{color:var(--gold)}
+.header-vista .site-nav li > a::after{display:none}
+.header-vista .site-nav .sub{background:#111;border-color:#333;color:#eaeaea}.header-vista .site-nav .sub a:hover{background:#222}
+.hero,.page-hero{margin-top:0}
+.hero{min-height:520px}
+.hero::before{background:rgba(0,0,0,.25)}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,55px);letter-spacing:.02em}
+.hero .lead{font-family:var(--sans)}
+.hero .eyebrow{color:#eaeaea;opacity:.8}
+.section{padding:3rem 0}
+.section.alt{background:#0d0d0d}
+.eyebrow{color:var(--gold-deep)}
+.sub,.split-text p,.prose p,.room p,.hours-grid p{color:var(--ink-soft)}
+.btn{border-color:#eaeaea;color:#eaeaea}.btn:hover{background:#eaeaea;color:#000}
+.btn-light{background:#eaeaea;border-color:#eaeaea;color:#000}.btn-light:hover{background:transparent;color:#eaeaea;border-color:#eaeaea}
+.btn-outline{border-color:#eaeaea;color:#eaeaea}.btn-outline:hover{background:#eaeaea;color:#000}
+.btn-outline-dark{border-color:var(--gold);color:var(--gold-deep)}.btn-outline-dark:hover{background:var(--gold);color:#fff}
+.cta-band{background:#111;color:#eaeaea;border-top:1px solid #222}.cta-band h2{color:#fff}
+.page-hero::before{background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.15))}
+.page-hero h1{font-family:var(--serif);font-weight:400}
+.room{background:#111;border-top-color:var(--gold)}.room h3{color:#fff}.room .eyebrow{color:var(--gold-deep)}
+.menu-card,.contact-card{background:#111;color:var(--ink)}.contact-card{border-left-color:var(--gold)}.contact-card h3{color:#fff}
+.quotes blockquote{background:#111;border-left-color:var(--gold);color:#eaeaea}
+.plain li{border-bottom-color:#222;color:var(--ink-soft)}
+.contact-form label{color:var(--ink-soft)}
+.contact-form input,.contact-form select,.contact-form textarea{background:#111;border-color:#333;color:#eaeaea}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--gold)}
+.map-section iframe{filter:grayscale(.3) invert(.9) hue-rotate(180deg)}
+.g-item{background:#111}
+.site-footer{background:#000;color:#a0a0a0;border-top:1px solid #222}
+.f-brand{font-family:"Big Shoulders Stencil Display","Impact",sans-serif;font-weight:900;letter-spacing:.05em;color:#eaeaea;font-size:1.8rem}
+.f-social svg{fill:#a0a0a0}.copyright{color:#666}
+.lightbox{background:rgba(0,0,0,.97)}
+@media (max-width:820px){
+  .header-vista .site-nav{position:static;transform:none;background:transparent;padding:0;overflow:visible;color:#eaeaea}
+  .header-vista .site-nav ul{flex-direction:row;flex-wrap:wrap;justify-content:center}
+  .header-vista .site-nav li{border:0;padding:0 .5rem}
+  .header-vista .site-nav li > a{border:0;padding:.5rem .1rem;font-size:13px}
+  .header-vista .site-nav .sub{display:none}
+  .header-vista .nav-toggle{display:none}
+}
 """
 
 HERO = "2649b2_76dd4914a0474381bdbbcf7d4c7fd72f~mv2_d_5923_3949_s_4_2.jpg"
@@ -61,9 +114,8 @@ def rooms_html():
 home = f"""
 <section class="hero" style="background-image:url('{wix(HERO, 1920, 1280)}')">
   <div class="hero-inner">
-    <p class="eyebrow">Floating Island · Han River · Banpo</p>
-    <h1>Vista</h1>
-    <p class="lead">3F Cafe &amp; Restaurant · 4F Rooftop — 전면 통창으로 만나는 한강 파노라믹 야경</p>
+    <h1>3F Cafe &amp; Restaurant<br>4F Rooftop</h1>
+    <p class="lead">전면 통창으로 만나는 한강 파노라믹 야경 — 기업연회 · 파티대관 · 루프탑 파티 · 돌잔치 · 가족연회</p>
     <div class="hero-cta">
       <a class="btn btn-light" href="tel:025372405">예약 02-537-2405</a>
       <a class="btn btn-outline" href="menu.html">Menu</a>
@@ -215,7 +267,7 @@ directions = f"""
 """
 
 PAGES = {
-    "index.html": ("Home", home, True),
+    "index.html": ("Home", home, False),
     "about.html": ("About us", about, False),
     "press.html": ("보도자료", press, False),
     "menu.html": ("메뉴", menu, False),
