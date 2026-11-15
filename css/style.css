@@ -282,3 +282,11 @@ p{margin:0 0 1em}
 .f-social-list a{display:flex;align-items:center;gap:.45rem;color:inherit;font-size:.85rem;letter-spacing:.02em;text-decoration:none}
 .f-social-list svg{width:18px;height:18px;flex:none}
 .f-social-list .s-handle{opacity:.75;font-weight:400}
+
+/* 2026-11-15: remove header gap (engine sets .page-hero margin-top:var(--header-h)) + clearer language switch */
+.header-vista ~ .hero,.header-vista ~ .page-hero,body .page-hero,body .hero{margin-top:0!important}
+.header-vista .lang-switch{font-size:.9rem;letter-spacing:.04em;margin:.5rem auto 1rem;gap:.55rem}
+.header-vista .lang-switch a{opacity:1;color:#bdbdbd;padding:.3rem .85rem;border:1px solid #555;border-radius:999px;line-height:1.2}
+.header-vista .lang-switch a.on{background:#eaeaea;color:#000;border-color:#eaeaea;font-weight:700;border-bottom:1px solid #eaeaea}
+.header-vista .lang-switch span{display:none}
+@media (max-width:960px){.header-vista .site-nav li > a{font-size:14px;padding:.4rem .15rem}.header-vista .site-nav li{padding:0 .4rem}}
