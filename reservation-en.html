@@ -53,6 +53,10 @@
 .rsv-side .contact-card p{margin:.3rem 0}
 .rsv-done{display:none;border:1px solid var(--gold);padding:1.6rem;border-radius:6px;background:#111}
 .rsv-done h3{margin-top:0}
+.rsv-done .btns{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.1rem}
+.rsv-done .btns a,.rsv-done .btns button{display:inline-block;padding:.7rem 1.1rem;border:1px solid var(--gold);border-radius:4px;color:#fff;background:var(--gold);font:inherit;font-size:.9rem;font-weight:600;text-decoration:none;cursor:pointer}
+.rsv-done .btns a.ghost,.rsv-done .btns button.ghost{background:transparent;color:#eaeaea;border-color:#555}
+.rsv-done .menu-note{font-size:.85rem;color:#bdbdbd;margin:.9rem 0 0;text-align:left;word-break:keep-all}
 .rsv-err{color:#ff6b81;font-size:.85rem;min-height:1em}
 @media (max-width:820px){.rsv-wrap{grid-template-columns:1fr}.rsv-form{grid-template-columns:1fr}}
 </style>
@@ -95,7 +99,7 @@
     <p class="rsv-err full" id="rsvErr" data-msg="Please check the required fields."></p>
     <button type="submit" class="rsv-submit full">Request reservation</button>
   </form>
-  <div class="rsv-done" id="rsvDone"><h3 data-alt="Please press Send in your mail app">Your request has been received</h3><p data-alt="A pre-filled e-mail has opened. If it did not, please contact us below.">We will contact you shortly to confirm your reservation. Thank you.</p></div>
+  <div class="rsv-done" id="rsvDone"><h3 data-alt="Please press Send in your mail app">Your request has been received</h3><p data-alt="A pre-filled e-mail has opened. If it did not, please contact us below.">We will contact you shortly to confirm your reservation. Thank you.</p><p class="menu-note">You can browse our menu right away below. Choosing in advance makes your visit even smoother.</p><div class="btns"><a href="menu-en.html" target="_blank" rel="noopener">View menu</a><a href="course-en.html" target="_blank" rel="noopener">Course menu</a><a class="ghost" href="directions-en.html" target="_blank" rel="noopener">Directions</a><button type="button" class="ghost" id="rsvCopy" data-url="https://www.vistapub.co.kr/menu-en.html" data-done="Copied">Copy menu link</button></div></div>
   </div>
   <aside class="rsv-side">
     <div class="contact-card"><h3>How it works</h3><p>Our team will review your request and <strong>contact you to confirm</strong>. Your booking is not final until confirmed.</p><p>Window seats and special set-ups are subject to availability.</p><p>Please request halal or vegetarian menus at least 3 days in advance.</p><p>Hours: 3F 11:00–23:00 · 4F Rooftop 16:00–24:00</p></div>
@@ -134,6 +138,7 @@
     var v=parseInt(g.value||'0',10)+parseInt(b.dataset.step,10); g.value=Math.max(1,v);});});
   g.addEventListener('input',function(){g.value=g.value.replace(/\D/g,'').slice(0,3);});
   function vals(n){return Array.prototype.map.call(f.querySelectorAll('[name="'+n+'"]:checked'),function(i){return i.value;}).join(', ');}
+  var cp=document.getElementById('rsvCopy'); if(cp){cp.addEventListener('click',function(){var u=cp.dataset.url,t=cp.textContent;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){cp.textContent=cp.dataset.done;setTimeout(function(){cp.textContent=t;},1800);}).catch(function(){prompt('URL',u);});});}
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var err=document.getElementById('rsvErr'), ok=d.value&&vals('time')&&g.value&&f.name.value.trim()&&f.phone.value.trim()&&f.consent.checked;

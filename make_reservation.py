@@ -51,6 +51,10 @@ STYLE = """
 .rsv-side .contact-card p{margin:.3rem 0}
 .rsv-done{display:none;border:1px solid var(--gold);padding:1.6rem;border-radius:6px;background:#111}
 .rsv-done h3{margin-top:0}
+.rsv-done .btns{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.1rem}
+.rsv-done .btns a,.rsv-done .btns button{display:inline-block;padding:.7rem 1.1rem;border:1px solid var(--gold);border-radius:4px;color:#fff;background:var(--gold);font:inherit;font-size:.9rem;font-weight:600;text-decoration:none;cursor:pointer}
+.rsv-done .btns a.ghost,.rsv-done .btns button.ghost{background:transparent;color:#eaeaea;border-color:#555}
+.rsv-done .menu-note{font-size:.85rem;color:#bdbdbd;margin:.9rem 0 0;text-align:left;word-break:keep-all}
 .rsv-err{color:#ff6b81;font-size:.85rem;min-height:1em}
 @media (max-width:820px){.rsv-wrap{grid-template-columns:1fr}.rsv-form{grid-template-columns:1fr}}
 </style>
@@ -75,6 +79,9 @@ T = {
   side2_h="바로 문의",
   hours="영업시간 3층 11:00–23:00 · 4층 루프탑 16:00–24:00",
   done_h="예약 신청이 접수되었습니다", done_p="확인 후 남겨 주신 연락처로 확정 안내를 드리겠습니다. 감사합니다.",
+  done_note="메뉴는 아래에서 바로 확인하실 수 있습니다. 미리 메뉴를 정해 두시면 당일 더 편안하게 즐기실 수 있습니다.",
+  done_menu="메뉴 보기", done_course="코스 메뉴", done_dir="오시는 길", done_copy="메뉴 링크 복사", done_copied="복사되었습니다",
+  menu_url="menu.html", course_url="course.html", dir_url="directions.html",
   mail_h="메일 앱에서 전송을 눌러 주세요", mail_p="작성하신 내용이 담긴 메일이 열렸습니다. 메일 앱이 열리지 않으면 아래 번호로 연락 주세요.",
   err="필수 항목을 확인해 주세요.", subject="[VISTA 예약 신청]",
  ),
@@ -96,6 +103,9 @@ T = {
   side2_h="Contact us directly",
   hours="Hours: 3F 11:00–23:00 · 4F Rooftop 16:00–24:00",
   done_h="Your request has been received", done_p="We will contact you shortly to confirm your reservation. Thank you.",
+  done_note="You can browse our menu right away below. Choosing in advance makes your visit even smoother.",
+  done_menu="View menu", done_course="Course menu", done_dir="Directions", done_copy="Copy menu link", done_copied="Copied",
+  menu_url="menu-en.html", course_url="course-en.html", dir_url="directions-en.html",
   mail_h="Please press Send in your mail app", mail_p="A pre-filled e-mail has opened. If it did not, please contact us below.",
   err="Please check the required fields.", subject="[VISTA Reservation Request]",
  ),
@@ -137,7 +147,7 @@ def body(t):
     <p class="rsv-err full" id="rsvErr" data-msg="{t['err']}"></p>
     <button type="submit" class="rsv-submit full">{t['submit']}</button>
   </form>
-  <div class="rsv-done" id="rsvDone"><h3 data-alt="{t['mail_h']}">{t['done_h']}</h3><p data-alt="{t['mail_p']}">{t['done_p']}</p></div>
+  <div class="rsv-done" id="rsvDone"><h3 data-alt="{t['mail_h']}">{t['done_h']}</h3><p data-alt="{t['mail_p']}">{t['done_p']}</p><p class="menu-note">{t['done_note']}</p><div class="btns"><a href="{t['menu_url']}" target="_blank" rel="noopener">{t['done_menu']}</a><a href="{t['course_url']}" target="_blank" rel="noopener">{t['done_course']}</a><a class="ghost" href="{t['dir_url']}" target="_blank" rel="noopener">{t['done_dir']}</a><button type="button" class="ghost" id="rsvCopy" data-url="https://www.vistapub.co.kr/{t['menu_url']}" data-done="{t['done_copied']}">{t['done_copy']}</button></div></div>
   </div>
   <aside class="rsv-side">
     <div class="contact-card"><h3>{t['side_h']}</h3>{side}<p>{t['hours']}</p></div>
@@ -160,6 +170,7 @@ SCRIPT = r"""
     var v=parseInt(g.value||'0',10)+parseInt(b.dataset.step,10); g.value=Math.max(1,v);});});
   g.addEventListener('input',function(){g.value=g.value.replace(/\D/g,'').slice(0,3);});
   function vals(n){return Array.prototype.map.call(f.querySelectorAll('[name="'+n+'"]:checked'),function(i){return i.value;}).join(', ');}
+  var cp=document.getElementById('rsvCopy'); if(cp){cp.addEventListener('click',function(){var u=cp.dataset.url,t=cp.textContent;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){cp.textContent=cp.dataset.done;setTimeout(function(){cp.textContent=t;},1800);}).catch(function(){prompt('URL',u);});});}
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var err=document.getElementById('rsvErr'), ok=d.value&&vals('time')&&g.value&&f.name.value.trim()&&f.phone.value.trim()&&f.consent.checked;
