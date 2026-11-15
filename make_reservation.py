@@ -39,7 +39,8 @@ STYLE = """
 .times-label{font-size:.75rem;color:#9a9a9a;margin:.6rem 0 .35rem}
 .stepper{display:flex;align-items:center;gap:.6rem}
 .stepper button{width:42px;height:42px;border:1px solid #444;background:#111;color:#eaeaea;font-size:1.2rem;border-radius:4px;cursor:pointer}
-.stepper input{width:70px!important;text-align:center}
+.stepper input{width:120px!important;text-align:center;font-size:1.05rem}
+.stepper .unit{color:#bdbdbd;font-size:.95rem}
 .note{font-size:.8rem;color:#a8a8a8;margin:.4rem 0 0}
 .note a{color:var(--gold-deep)}
 .consent{display:flex;gap:.6rem;align-items:flex-start;font-size:.82rem;color:#bdbdbd}
@@ -59,7 +60,7 @@ T = {
  "ko": dict(
   title="예약하기 | Vista", eyebrow="Reservation", h1="예약하기",
   lead="한강뷰 디너 · 기념일 · 프러포즈 · 해외 손님 VIP 디너",
-  date="방문 날짜", time="방문 시간", lunch="런치", dinner="디너", guests="인원",
+  date="방문 날짜", time="방문 시간", lunch="런치", dinner="디너", guests="인원", guests_ph="직접 입력", guests_unit="명",
   guests_note='30명 이상 단체·대관은 <a href="tel:025372440">02-537-2440</a>으로 문의해 주세요.',
   purpose="방문 목적", purposes=["일반 식사","기념일","생일","프러포즈","해외 손님 VIP 디너","비즈니스 미팅","단체 모임"],
   req="요청사항", reqs=["창가석","할랄","채식","알레르기","케이크","꽃 장식","샴페인·와인"],
@@ -80,7 +81,7 @@ T = {
  "en": dict(
   title="Reservation | Vista", eyebrow="Reservation", h1="Book a Table",
   lead="Han River-view dinners · anniversaries · proposals · VIP dinners for overseas guests",
-  date="Date", time="Time", lunch="Lunch", dinner="Dinner", guests="Guests",
+  date="Date", time="Time", lunch="Lunch", dinner="Dinner", guests="Guests", guests_ph="Enter number", guests_unit="people",
   guests_note='For groups of 30+ or private hire, please contact <a href="tel:+82225372440">+82 2-537-2440</a>.',
   purpose="Occasion", purposes=["Dining","Anniversary","Birthday","Proposal","VIP dinner for overseas guests","Business meeting","Group gathering"],
   req="Requests", reqs=["Window seat","Halal","Vegetarian","Allergy","Cake","Flowers","Champagne / wine"],
@@ -122,7 +123,7 @@ def body(t):
   <form class="rsv-form" id="rsvForm" novalidate data-endpoint="{ENDPOINT}" data-subject="{t['subject']}">
     <label><span>{t['date']}{r}</span><input type="date" name="date" id="rsvDate" required></label>
     <div><span style="display:block;font-size:.82rem;font-weight:600;letter-spacing:.04em;color:#eaeaea;margin-bottom:.45rem">{t['guests']}{r}</span>
-      <div class="stepper"><button type="button" data-step="-1" aria-label="-">−</button><input type="text" inputmode="numeric" name="guests" id="rsvGuests" value="2" required><button type="button" data-step="1" aria-label="+">+</button></div>
+      <div class="stepper"><button type="button" data-step="-1" aria-label="-">−</button><input type="text" inputmode="numeric" name="guests" id="rsvGuests" placeholder="{t['guests_ph']}" required><button type="button" data-step="1" aria-label="+">+</button><span class="unit">{t['guests_unit']}</span></div>
       <p class="note">{t['guests_note']}</p></div>
     <fieldset class="full"><legend>{t['time']}{r}</legend>{times}</fieldset>
     <fieldset class="full"><legend>{t['purpose']}</legend><div class="chips">{chips("purpose", t['purposes'], "radio")}</div></fieldset>
@@ -156,8 +157,8 @@ SCRIPT = r"""
   var d=document.getElementById('rsvDate'), g=document.getElementById('rsvGuests');
   var t=new Date(); t.setMinutes(t.getMinutes()-t.getTimezoneOffset()); d.min=t.toISOString().slice(0,10);
   f.querySelectorAll('[data-step]').forEach(function(b){b.addEventListener('click',function(){
-    var v=parseInt(g.value||'0',10)+parseInt(b.dataset.step,10); g.value=Math.min(29,Math.max(1,v));});});
-  g.addEventListener('input',function(){g.value=g.value.replace(/\D/g,'').slice(0,2);});
+    var v=parseInt(g.value||'0',10)+parseInt(b.dataset.step,10); g.value=Math.max(1,v);});});
+  g.addEventListener('input',function(){g.value=g.value.replace(/\D/g,'').slice(0,3);});
   function vals(n){return Array.prototype.map.call(f.querySelectorAll('[name="'+n+'"]:checked'),function(i){return i.value;}).join(', ');}
   f.addEventListener('submit',function(e){
     e.preventDefault();
