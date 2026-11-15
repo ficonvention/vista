@@ -23,6 +23,7 @@ SITE = dict(
         ("about.html", "About us", [("press.html", "보도자료 · Reviews")]),
         ("menu.html", "메뉴", [("menu.html#food", "Food"), ("menu.html#beverage", "Beverage"), ("course.html", "코스 요리")]),
         ("banquet.html", "연회 · 파티", [("banquet.html#corporate", "기업연회"), ("banquet.html#family", "가족연회 · 돌잔치"), ("banquet.html#wedding", "웨딩"), ("banquet.html#proposal", "프로포즈")]),
+        ("reservation.html", "예약", []),
         ("directions.html", "찾아오시는 길", []),
     ],
 )
