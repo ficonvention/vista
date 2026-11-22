@@ -10,11 +10,11 @@ SITE = dict(
     brand_html='<a class="brand vista-mark" href="index.html"><span class="brand-main">VISTA</span></a>',
     header_cls=" header-vista",
     fonts="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Fredericka+the+Great&family=Big+Shoulders+Stencil+Display:wght@700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap",
-    desc="비스타 — 반포 한강 세빛섬 플로팅아일랜드 3층 캐주얼 펍 다이닝. 전면 통창 파노라믹 한강 야경, 이탈리안 푸드와 세계 맥주, 기업연회·가족연회·돌잔치·프로포즈. 11:00–23:00, 예약 02-537-2405.",
+    desc="비스타 — 반포 한강 세빛섬 플로팅아일랜드 3층 캐주얼 펍 다이닝. 전면 통창 파노라믹 한강 야경, 이탈리안 푸드와 세계 맥주, 기업연회·가족연회·돌잔치·프로포즈. 11:00–22:00, 예약 02-537-2405.",
     og="2649b2_76dd4914a0474381bdbbcf7d4c7fd72f~mv2_d_5923_3949_s_4_2.jpg",
     address="서울 서초구 반포동 650 세빛섬 플로팅아일랜드 3층 비스타",
     tel="(02) 537-2405", tel_raw="025372405", fax="", email=EMAIL,
-    footer_extra='<p>Tel 2: <a href="tel:025372440">(02) 537-2440</a> &nbsp;|&nbsp; 3F 11:00–23:00 · 4F Rooftop 16:00–24:00</p>',
+    footer_extra='<p>Tel 2: <a href="tel:025372440">(02) 537-2440</a> &nbsp;|&nbsp; 3F 11:00–22:00 · 4F Rooftop 16:00–24:00</p>',
     legal="Floating Island Vista",
     social=[("Instagram", "https://instagram.com/floatingisland_marinapark", IG_SVG), ("Facebook", "https://www.facebook.com/floatingi2440", FB_SVG)],
     favicon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#14110f"/><text x="32" y="43" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#d4a24c">V</text></svg>',
@@ -158,7 +158,7 @@ home = f"""
 
 <section class="section alt">
   <div class="wrap hours-grid">
-    <div><p class="eyebrow">영업시간</p><h3>3F 비스타</h3><p>11:00 – 23:00</p><h3>4F 루프탑</h3><p>16:00 – 24:00</p></div>
+    <div><p class="eyebrow">영업시간</p><h3>3F 비스타</h3><p>11:00 – 22:00</p><h3>4F 루프탑</h3><p>16:00 – 24:00</p></div>
     <div><p class="eyebrow">예약 문의</p><h3><a href="tel:025372405">(02) 537-2405</a></h3><p><a href="tel:025372440">(02) 537-2440</a><br><a href="mailto:{EMAIL}">{EMAIL}</a></p><p>전 좌석 예약제로 운영됩니다.</p></div>
     <div><p class="eyebrow">위치</p><h3>세빛섬 3층</h3><p>서울 서초구 반포동 650 세빛섬 플로팅아일랜드 3F</p><a class="btn" href="directions.html">찾아오시는 길</a></div>
   </div>
@@ -177,7 +177,7 @@ about = f"""
   </div>
 </div></section>
 <section class="section alt"><div class="wrap"><img src="{wix('56292f_5da3deab1922472495c9d820bdf3b7a1.jpg', 1400, 790)}" loading="lazy" alt="" style="width:100%"></div></section>
-{cta("Reservation", "예약문의 (02) 537-2405 · 11:00 – 23:00", "전화 예약", "tel:025372405", ("보도자료 · Reviews", "press.html"))}
+{cta("Reservation", "예약문의 (02) 537-2405 · 11:00 – 22:00", "전화 예약", "tel:025372405", ("보도자료 · Reviews", "press.html"))}
 """
 
 press = f"""
@@ -249,7 +249,7 @@ directions = f"""
     <p>서울특별시 서초구 반포동 650번지 세빛섬 (가빛섬) 3F 비스타</p>
     <div class="contact-card">
       <h3>영업시간</h3>
-      <p>3층 비스타: 11:00 – 23:00<br>4층 루프탑: 16:00 – 24:00</p>
+      <p>3층 비스타: 11:00 – 22:00<br>4층 루프탑: 16:00 – 24:00</p>
       <h3>예약 · 문의</h3>
       <p>Tel: <a href="tel:025372405">(02) 537-2405</a> · <a href="tel:025372440">(02) 537-2440</a><br>E-mail: <a href="mailto:{EMAIL}">{EMAIL}</a></p>
       <p>특별 예약 및 단체 주문은 위 번호를 이용해 주세요.</p>
